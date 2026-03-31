@@ -1,0 +1,325 @@
+<?xml version="1.0" ?>
+<robot name="rg2_tac3d_dual">
+
+    <!-- Right Tac3D mount pose -->
+
+    <!-- Left Tac3D mount pose -->
+
+    <link name="base_link">
+    </link>
+    <joint name="base_fixed_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="hand_link"/>
+        <origin xyz="0.000 0.000 0.000" rpy="0 0 0"/>
+    </joint>
+    <link name="hand_link">
+        <collision>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/collision/RG2_Hand_col.STL"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/RG2_Hand_vis.STL"/>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="0.061902 0.000129 -0.000005" rpy="0.00 0.00 0.00"/>
+            <mass value="1.684558"/>
+            <inertia ixx="0.000862" ixy="0.000000" ixz="0.000000"
+                     iyy="0.002401" iyz="-0.000001"
+                     izz="0.002620" />
+        </inertial>
+    </link>
+    <joint name="gripper_joint" type="revolute">
+        <parent link="hand_link"/>
+        <child link="l_moment_arm_link"/>
+        <origin xyz="0.105 0.017 0.010" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit velocity="3.14" effort="10.6" lower="-0.45" upper="1.570796327" />
+        <dynamics damping="0.1" friction="0.0" />
+    </joint>
+    <link name="l_moment_arm_link">
+        <collision>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/collision/RG2_LeftMomentArm_col.STL"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/RG2_LeftMomentArm_vis.STL"/>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="0.017004 0.006397 -0.010300" rpy="0.00 0.00 0.00"/>
+            <mass value="0.160209"/>
+            <inertia ixx="0.000023" ixy="0.000019" ixz="0.000000"
+                     iyy="0.000072" iyz="0.000000"
+                     izz="0.000083" />
+        </inertial>
+    </link>
+    <joint name="l_finger_2_joint" type="revolute">
+        <parent link="l_moment_arm_link"/>
+        <child link="l_finger_link"/>
+        <origin xyz="0.049 0.026 0.000" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit velocity="3.14" effort="10.6" lower="-1.570796327" upper="1.570796327" />
+        <mimic joint="gripper_joint" multiplier="-1"/>
+        <dynamics damping="0.1" friction="0.0" />
+    </joint>
+    <link name="l_finger_link">
+        <collision>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/collision/RG2_LeftFinger_col.STL"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/RG2_LeftFinger_vis.STL"/>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="0.024695 -0.010178 -0.010001" rpy="0.00 0.00 0.00"/>
+            <mass value="0.081638"/>
+            <inertia ixx="0.000006" ixy="-0.000005" ixz="0.000000"
+                     iyy="0.000025" iyz="0.000000"
+                     izz="0.000026" />
+        </inertial>
+    </link>
+    <joint name="l_finger_passive_joint" type="revolute">
+        <parent link="hand_link"/>
+        <child link="l_truss_arm_link"/>
+        <origin xyz="0.122 0.008 0.010" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit velocity="3.14" effort="10.6" lower="-1.570796327" upper="1.570796327" />
+        <mimic joint="gripper_joint" multiplier="1"/>
+        <dynamics damping="0.1" friction="0.0" />
+    </joint>
+    <link name="l_truss_arm_link">
+        <collision>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/collision/RG2_LeftTrussArm_col.STL"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/RG2_LeftTrussArm_vis.STL"/>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="0.023075 0.012136 -0.010000" rpy="0.00 0.00 0.00"/>
+            <mass value="0.065927"/>
+            <inertia ixx="0.000010" ixy="0.000010" ixz="0.000000"
+                     iyy="0.000024" iyz="0.000000"
+                     izz="0.000025" />
+        </inertial>
+    </link>
+    <joint name="r_finger_1_joint" type="revolute">
+        <parent link="hand_link"/>
+        <child link="r_moment_arm_link"/>
+        <origin xyz="0.105 -0.017 0.010" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit velocity="3.14" effort="10.6" lower="-1.570796327" upper="1.570796327" />
+        <mimic joint="gripper_joint" multiplier="-1"/>
+        <dynamics damping="0.1" friction="0.0" />
+    </joint>
+    <link name="r_moment_arm_link">
+        <collision>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/collision/RG2_RightMomentArm_col.STL"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/RG2_RightMomentArm_vis.STL"/>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="0.017004 -0.006397 -0.010300" rpy="0.00 0.00 0.00"/>
+            <mass value="0.160209"/>
+            <inertia ixx="0.000023" ixy="-0.000019" ixz="0.000000"
+                     iyy="0.000072" iyz="0.000000"
+                     izz="0.000083" />
+        </inertial>
+    </link>
+    <joint name="r_finger_2_joint" type="revolute">
+        <parent link="r_moment_arm_link"/>
+        <child link="r_finger_link"/>
+        <origin xyz="0.049 -0.026 0.000" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit velocity="3.14" effort="10.6" lower="-1.570796327" upper="1.570796327" />
+        <mimic joint="gripper_joint" multiplier="1"/>
+        <dynamics damping="0.1" friction="0.0" />
+    </joint>
+    <link name="r_finger_link">
+        <collision>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/collision/RG2_RightFinger_col.STL"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/RG2_RightFinger_vis.STL"/>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="0.024695 0.010178 -0.010000" rpy="0.00 0.00 0.00"/>
+            <mass value="0.081637"/>
+            <inertia ixx="0.000006" ixy="0.000005" ixz="0.000000"
+                     iyy="0.000025" iyz="0.000000"
+                     izz="0.000026" />
+        </inertial>
+    </link>
+    <joint name="r_finger_passive_joint" type="revolute">
+        <parent link="hand_link"/>
+        <child link="r_truss_arm_link"/>
+        <origin xyz="0.122 -0.008 0.010" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit velocity="3.14" effort="10.6" lower="-1.570796327" upper="1.570796327" />
+        <mimic joint="gripper_joint" multiplier="-1"/>
+        <dynamics damping="0.1" friction="0.0" />
+    </joint>
+    <link name="r_truss_arm_link">
+        <collision>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/collision/RG2_RightTrussArm_col.STL"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/RG2_RightTrussArm_vis.STL"/>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="0.023075 -0.012136 -0.010000" rpy="0.00 0.00 0.00"/>
+            <mass value="0.065927"/>
+            <inertia ixx="0.000010" ixy="-0.000010" ixz="0.000000"
+                     iyy="0.000024" iyz="0.000000"
+                     izz="0.000025" />
+        </inertial>
+    </link>
+
+    <link name="tac3d_adapter_right">
+        <visual>
+            <origin xyz="0.0085 0.016 0.0281" rpy="1.57079632679 -1.57079632679 0" />
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/Finger_link_STL.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="adapter_gray_right">
+                <color rgba="0.35 0.35 0.35 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0085 0.016 0.0281" rpy="1.57079632679 -1.57079632679 0" />
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/Finger_link_STL.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="tac3d_adapter_right_joint" type="fixed">
+        <parent link="r_finger_link" />
+        <child link="tac3d_adapter_right" />
+        <origin xyz="0.082 0.009 -0.010"
+                rpy="-1.57079632679 0.0 1.57079632679" />
+    </joint>
+
+    <link name="tac3d_dl1_sensor_right">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="0.033302" />
+            <inertia ixx="4.4093E-06" ixy="9.5227E-12" ixz="-1.0625E-06"
+                     iyy="6.6455E-06" iyz="-1.4614E-11" izz="6.9939E-06" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 1.570796327 0" />
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/tac3d/tac3d_dl1_sensor_vis.STL" />
+            </geometry>
+            <material name="tac3d_gray_right">
+                <color rgba="0.2 0.2 0.2 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 1.570796327 0" />
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/tac3d/tac3d_dl1_sensor_col.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="tac3d_right_sensor_joint" type="fixed">
+        <parent link="tac3d_adapter_right" />
+        <child link="tac3d_dl1_sensor_right" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="tac3d_adapter_left">
+        <visual>
+            <origin xyz="0.0085 -0.016 0.0281" rpy="-1.57079632679 -1.57079632679 0" />
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/Finger_link_STL.STL" scale="0.001 -0.001 0.001" />
+            </geometry>
+            <material name="adapter_gray_left">
+                <color rgba="0.35 0.35 0.35 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0085 -0.016 0.0281" rpy="-1.57079632679 -1.57079632679 0" />
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/visual/Finger_link_STL.STL" scale="0.001 -0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="tac3d_adapter_left_joint" type="fixed">
+        <parent link="l_finger_link" />
+        <child link="tac3d_adapter_left" />
+        <origin xyz="0.082 -0.009 -0.010"
+                rpy="1.57079632679 0.0 -1.57079632679" />
+    </joint>
+
+    <link name="tac3d_dl1_sensor_left">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="0.033302" />
+            <inertia ixx="4.4093E-06" ixy="9.5227E-12" ixz="-1.0625E-06"
+                     iyy="6.6455E-06" iyz="-1.4614E-11" izz="6.9939E-06" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 1.570796327 0" />
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/tac3d/tac3d_dl1_sensor_vis.STL" />
+            </geometry>
+            <material name="tac3d_gray_left">
+                <color rgba="0.2 0.2 0.2 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 1.570796327 0" />
+            <geometry>
+                <mesh filename="/home/saiki/Tac3D/tacto/Tac3D/assets/robot/rg2_tac3d_description/meshes/tac3d/tac3d_dl1_sensor_col.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="tac3d_left_sensor_joint" type="fixed">
+        <parent link="tac3d_adapter_left" />
+        <child link="tac3d_dl1_sensor_left" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+</robot>

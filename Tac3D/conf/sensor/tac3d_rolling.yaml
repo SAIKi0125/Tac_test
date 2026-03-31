@@ -1,0 +1,42 @@
+hydra:
+  run:
+    dir: ./
+
+tacto:
+  width: 120
+  height: 160
+  visualize_gui: True
+  show_depth: True
+  zrange: 0.003
+  config_path: conf/sensor/config_tac3d_local.yml
+
+digits:
+  top:
+    urdf_path: "assets/sensor/Tac3D/urdf/Tac3D_DL1_URDF.urdf"
+    base_position: [0, 0, 0.070]
+    base_orientation: [-0.707107, 0.0, 0.707107, 0.0]
+    use_fixed_base: False
+
+  bottom:
+    urdf_path: "assets/sensor/Tac3D/urdf/Tac3D_DL1_URDF.urdf"
+    base_position: [0, 0, 0.011]
+    base_orientation: [0.0, -0.707106, 0.0, 0.707106]
+    use_fixed_base: True
+
+object:
+  urdf_path: "assets/object/sphere_small.urdf"
+  base_position: [-0.015, 0, 0.04]
+  global_scaling: 0.15
+
+object_control_panel:
+  slider_params:
+    position_low: [-0.03, -0.03, 0.05]
+    position_high: [0.03, 0.03, 0.1]
+
+pybullet_camera:
+  cameraDistance: 0.12
+  cameraYaw: 0
+  cameraPitch: -20
+  cameraTargetPosition: [0, 0, 0.02]
+
+reset_z_threshold: 0.01

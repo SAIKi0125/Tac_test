@@ -1,0 +1,50 @@
+# Local Tac3D config for the standalone demo.
+# Tuned for the TACTO standalone example.
+
+sensor:
+  camera:
+    - cam0:
+      position: [0, 0, 0]
+      orientation: [90, 0, -90]
+      yfov: 90
+      znear: 0.002
+      lightIDList: [0, 1, 2]
+
+  gel:
+    origin: [0.011,0, 0]
+    width: 0.021
+    height: 0.021
+    curvature: True
+    curvatureMax: 0.005
+    R: 0.05
+    countW: 100
+
+  lights:
+    # Light position & properties. 
+
+    origin: [0.005, 0, 0] # center of the light plane, in meters
+
+    # Light position can be expressed in:
+    # - polar coordinates: r and theta. (in y-z plane), and x coordinate of the plane
+    # - cartesian coordinates: xyz
+    # Only one of the xyz or rtheta is required.
+    polar: True # True: apply polar coordinates; False: apply cartesian coordinates;    
+    xyz: # cartesian coordinates
+      coords: [[0, 0.01732, 0.01], [0, -0.01732, 0.01], [0, 0, -0.02]]
+    xrtheta: # polar coordinates in y-z plane
+      xs: [0, 0, 0] # x coordinate of the y-z plane
+      rs: [0.02, 0.02, 0.02] # r in polar coordinates
+      thetas: [30, 150, 270] # theta in polar coordinates, in degrees
+    
+    colors: [[1, 0, 0], [0, 1, 0], [0, 0, 1]] # R G B color
+    intensities: [1, 1, 1] # light intensity
+
+  noise:
+    color:
+      mean: 0
+      std: 7
+
+  force:
+    enable: True
+    range_force: [0, 10]
+    max_deformation: 0.003

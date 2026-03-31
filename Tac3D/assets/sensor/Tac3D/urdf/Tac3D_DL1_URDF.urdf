@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot
+  name="Tac3D_DL1_URDF(without adapter)">
+  <link
+    name="tac3d_dl1_sensor">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.033302" />
+      <inertia
+        ixx="4.4093E-06"
+        ixy="9.5227E-12"
+        ixz="-1.0625E-06"
+        iyy="6.6455E-06"
+        iyz="-1.4614E-11"
+        izz="6.9939E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 1.57079632679 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/tac3d_dl1_sensor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 1.57079632679 0" />
+      <geometry>
+        <mesh
+          filename="../collisions/tac3d_dl1_sensor.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

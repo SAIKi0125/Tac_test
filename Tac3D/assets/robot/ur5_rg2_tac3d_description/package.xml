@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ur5_rg2_tac3d_description</name>
+  <version>0.0.0</version>
+  <description>UR5 with RG2 Tac3D dual gripper for PyBullet.</description>
+  <maintainer email="saiki@local">saiki</maintainer>
+  <license>TODO</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <export/>
+</package>
